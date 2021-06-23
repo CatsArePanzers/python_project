@@ -23,8 +23,11 @@ class Rectangle(pygame.sprite.Sprite):
 
 class Paddle(Rectangle):
     def set_pos_p(self, y):
-        self.set_pos(self.x, y)
-
+        self.set_pos(self.rect.x, y)
+        if y <= 0:
+            self.set_pos(self.rect.x, 0)
+        elif y >= 640 - self.height:
+            self.set_pos(self.rect.x, 640 - self.height)
 class Ball(Rectangle):
     def __init__(self, width):
         super().__init__(width, width)

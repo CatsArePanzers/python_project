@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from src.classes import *
 
+SPEED = 1
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
@@ -35,7 +36,11 @@ while True:
             exit(0)
  
     # --- Game logic should go here
- 
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_UP]:
+        player_paddle.set_pos_p(player_paddle.rect.y - SPEED)
+    elif keys[pygame.K_DOWN]:
+        player_paddle.set_pos_p(player_paddle.rect.y + SPEED)
 
  
     # --- Drawing code should go here
