@@ -23,7 +23,7 @@ class Rectangle(pygame.sprite.Sprite):
         self.rect.y = y
 
     def get_screen(self, sizes):
-        screen = sizes
+        self.screen = sizes
 
 class Paddle(Rectangle):
     def set_pos_p(self, y):
