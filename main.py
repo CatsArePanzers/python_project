@@ -9,17 +9,17 @@ WHITE = (255, 255, 255)
 screen_size = (800, 640)
 
 pygame.init()
-screen = pygame.display.set_mode(screen_size)
+screen = pygame.display.set_mode(screen_size, pygame.RESIZABLE)
 pygame.display.set_caption("Pong")
 
 ball = Ball(20)
 ball.set_pos((screen_size[0] - ball.width) / 2, 
     (screen_size[1] - ball.width) / 2)
 
-player_paddle = Paddle(20, 100)
+player_paddle = Paddle(20, 100, screen)
 player_paddle.set_pos(ball.width, (screen_size[1] - player_paddle.height) / 2)
 
-enemy_paddle = Paddle(20, 100)
+enemy_paddle = Paddle(20, 100, screen)
 enemy_paddle.set_pos(screen_size[0] - ball.width * 2, player_paddle.rect.y)
 
 sprites = pygame.sprite.Group()
@@ -46,7 +46,11 @@ while True:
     # --- Drawing code should go here
     sprites.update()
 
-    # First, clear the screen to black. 
+    # First, clear the screen to black.
+    if screen_size != screen.get_size():
+        screen_size = screen.get_size()
+
+
     screen.fill(BLACK)
 
     sprites.draw(screen)
